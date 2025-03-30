@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Purchase Report</title>
+</head>
+<body>
+    <h2>Purchase Report</h2>
+    <table border="1">
+        <tr>
+            <th>Supplier</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Date</th>
+        </tr>
+        <tr th:each="purchase : ${purchases}">
+            <td th:text="${purchase.supplier.name}"></td>
+            <td th:text="${purchase.product.name}"></td>
+            <td th:text="${purchase.quantity}"></td>
+            <td th:text="'$' + ${purchase.totalPrice}"></td> <!-- ✅ Display price -->
+            <td th:text="${#temporals.format(purchase.purchaseDate, 'yyyy-MM-dd')}"></td>
+        </tr>
+    </table>
+
+    
+    <br>
+    <a href="/purchase-form">
+        <button>Back to Purchase Form</button>
+    </a>
+</body>
+</html>

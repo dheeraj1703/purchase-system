@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        select, input {
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Purchase Form</h2>
+        
+        <!-- Display error message if present -->
+        <p class="error" th:if="${error}" th:text="${error}"></p>
+
+        <form action="/save-purchase" method="post">
+            <!-- Supplier Dropdown -->
+            <label for="supplier">Supplier:</label>
+            <select name="supplierId" id="supplier" required>
+                <option value="">-- Select Supplier --</option>
+                <option th:each="supplier : ${suppliers}" 
+                        th:value="${supplier.id}" 
+                        th:text="${supplier.name}">
+                </option>
+            </select>
+
+            <!-- Product Dropdown -->
+            <label for="product">Product:</label>
+            <select name="productId" id="product" required>
+                <option value="">-- Select Product --</option>
+                <option th:each="product : ${products}" 
+                        th:value="${product.id}" 
+                        th:text="${product.name}">
+                </option>
+            </select>
+
+            <!-- Quantity Input -->
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" id="quantity" min="1" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit Purchase</button>
+        </form>
+    </div>
+</body>
+</html>

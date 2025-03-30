@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Purchase Form</title></head>
+<body>
+    <form action="/save-purchase" method="post">
+        <label>Supplier:</label>
+        <select name="supplier.id">
+            <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+        </select>
+
+        <label>Product:</label>
+        <select name="product.id">
+            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+        </select>
+
+        <label>Quantity:</label>
+        <input type="number" name="quantity" required>
+
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
+

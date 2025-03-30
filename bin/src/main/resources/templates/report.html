@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Purchase Report</title></head>
+<body>
+    <table border="1">
+        <tr><th>Supplier</th><th>Product</th><th>Quantity</th><th>Date</th></tr>
+        <tr th:each="purchase : ${purchases}">
+            <td th:text="${purchase.supplier.name}"></td>
+            <td th:text="${purchase.product.name}"></td>
+            <td th:text="${purchase.quantity}"></td>
+            <td th:text="${purchase.purchaseDate}"></td>
+        </tr>
+    </table>
+</body>
+</html>
+
