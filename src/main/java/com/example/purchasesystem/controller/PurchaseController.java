@@ -51,15 +51,15 @@ public class PurchaseController {
 
         Product product = productOpt.get();
         Supplier supplier = supplierOpt.get();
-        double totalPrice = product.getPrice() * quantity; // Calculate total price
+        double totalPrice = product.getPrice() * quantity; 
 
-        // ✅ Ensure purchase date is set
+
         Purchase purchase = new Purchase();
         purchase.setProduct(product);
         purchase.setSupplier(supplier);
         purchase.setQuantity(quantity);
         purchase.setTotalPrice(totalPrice);
-        purchase.setPurchaseDate(LocalDate.now()); // ✅ Fix: Ensure the date is set
+        purchase.setPurchaseDate(LocalDate.now()); 
 
         purchaseRepository.save(purchase);
         return "redirect:/report";
@@ -69,6 +69,6 @@ public class PurchaseController {
     public String showReport(Model model) {
         List<Purchase> purchases = purchaseRepository.findAll();
         model.addAttribute("purchases", purchases);
-        return "report"; // ✅ Ensure Thymeleaf can render data properly
+        return "report"; 
     }
 }
